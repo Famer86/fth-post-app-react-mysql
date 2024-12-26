@@ -1,0 +1,85 @@
+import { useEffect, useState } from "react";
+import CartTotals from "../components/cart/CartTotals";
+import Categories from "../components/categories/Categories";
+import Header from "../components/header/Header";
+import Products from "../components/products/Products";
+import { Spin } from "antd";
+
+const HomePage = () => {
+  const [categories, setCategories] = useState();
+  //useState([]) yerine useState() yazıldı, çünkü array ve içeriisnde veri var mış gibi algılamasın diye spin başlatıllması için.. eğer categories ve produtcs yok ise spin başlat..
+  const [filtered, setFiltered] = useState([]);
+  const [products, setProducts] = useState();
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    const getCategories = async () => {
+      try {
+        //http://localhost:5000/api/categories/ => "proxy" : "http://localhost:5000", client->package.json icerisinde
+        const res = await fetch("/api/categories/");
+        const data = await res.json();
+        //geçici çözüm::::: products/Add.jsx içindeki select in value değeri olması gerektiğinden tüm değerlerin dışında value değeri de gönderilmesi gerekli oldu. [58.ders 17.dk]
+        data &&
+          setCategories(
+            data.map((item) => {
+              return { ...item, value: item.title };
+            })
+          );
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getCategories();
+  }, []);
+
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const res = await fetch("/api/products/");
+        const data = await res.json();
+        setProducts(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getProducts();
+  }, []);
+
+  return (
+    <>
+      <Header setSearch={setSearch} />
+      {products && categories ? (
+        <div className="home px-6 flex md:flex-row flex-col justify-between gap-10 md:pb-0 pb-24">
+          <div className="categories overflow-auto max-h-[calc(100vh_-_112px)]  md:pb-10">
+            <Categories
+              categories={categories}
+              setCategories={setCategories}
+              setFiltered={setFiltered}
+              products={products}
+            />
+          </div>
+          <div className="products flex-[8] max-h-[calc(100vh_-_112px)] overflow-y-auto pb-10 min-h-[500px]">
+            <Products
+              categories={categories}
+              filtered={filtered}
+              products={products}
+              setProducts={setProducts}
+              search={search}
+            />
+          </div>
+          <div className="card-wrapper min-w-[300px] md:-mr-[24px] md:-mt-[24px] border">
+            <CartTotals />
+          </div>
+        </div>
+      ) : (
+        <Spin
+          size="large"
+          className="absolute top-1/2 h-screen w-screen flex justify-center"
+        />
+      )}
+    </>
+  );
+};
+
+export default HomePage;
