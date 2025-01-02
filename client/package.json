@@ -23,7 +23,7 @@
     "react-to-print": "^3.0.2",
     "web-vitals": "^2.1.4"
   },
-  "proxy": "https://fth-post-app-react-mysql.onrender.com/",
+  "proxy": "https://fth-post-app-react-mysql.onrender.com",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
