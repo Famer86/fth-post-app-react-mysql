@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^13.5.0",
     "antd": "^5.21.0",
     "cors": "^2.8.5",
+    "env": "^0.0.2",
     "morgan": "^1.10.0",
     "react": "^18.3.1",
     "react-charts": "^3.0.0-beta.57",
@@ -22,7 +23,7 @@
     "react-to-print": "^3.0.2",
     "web-vitals": "^2.1.4"
   },
-  "proxy": "http://localhost:5000",
+  "proxy": "https://fth-post-app-react-mysql.onrender.com/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
