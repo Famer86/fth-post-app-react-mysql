@@ -16,7 +16,7 @@ const HomePage = () => {
     const getCategories = async () => {
       try {
         //http://localhost:5000/api/categories/ => "proxy" : "http://localhost:5000", client->package.json icerisinde
-        const res = await fetch("/api/categories/");
+        const res = await fetch("/api/categories");
         const data = await res.json();
         //geçici çözüm::::: products/Add.jsx içindeki select in value değeri olması gerektiğinden tüm değerlerin dışında value değeri de gönderilmesi gerekli oldu. [58.ders 17.dk]
         data &&
