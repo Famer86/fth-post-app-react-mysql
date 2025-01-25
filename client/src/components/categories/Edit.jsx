@@ -12,7 +12,7 @@ const Edit = ({
   const onFinish = (values) => {
     console.log(values);
     try {
-      fetch("/api/categories/update/" + [editingRow.id], {
+      fetch(process.env.REACT_APP_CLIENT_SERVER + "/api/categories/update/" + [editingRow.id], {
         method: "PUT",
         body: JSON.stringify({ ...values }),
         headers: { "Content-type": "application/json; charset=UTF-8" },
@@ -38,7 +38,7 @@ const Edit = ({
   const deleteCategory = (id) => {
     if (window.confirm("Emin Misin ?")) {
       try {
-        fetch("/api/categories/delete/" + [id], {
+        fetch(process.env.REACT_APP_CLIENT_SERVER + "/api/categories/delete/" + [id], {
           method: "DELETE",
           headers: { "Content-type": "application/json; charset=UTF-8" },
         });

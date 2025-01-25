@@ -11,7 +11,7 @@ const Edit = () => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const res = await fetch("/api/products/");
+        const res = await fetch(process.env.REACT_APP_CLIENT_SERVER + "/api/products/");
         const data = await res.json();
         setProducts(data);
       } catch (error) {
@@ -24,7 +24,7 @@ const Edit = () => {
   useEffect(() => {
     const getCategories = async () => {
       try {
-        const res = await fetch("/api/categories/");
+        const res = await fetch(process.env.REACT_APP_CLIENT_SERVER + "/api/categories/");
         const data = await res.json();
         data &&
           setCategories(
@@ -43,7 +43,7 @@ const Edit = () => {
   const onFinish = (values) => {
     // console.log(values);
     try {
-      fetch("/api/products/update/" + [editingItem.id], {
+      fetch(process.env.REACT_APP_CLIENT_SERVER + "/api/products/update/" + [editingItem.id], {
         method: "PUT",
         body: JSON.stringify({ ...values }),
         headers: { "Content-type": "application/json; charset=UTF-8" },
@@ -68,7 +68,7 @@ const Edit = () => {
   const deleteProduct = (id) => {
     if (window.confirm("Emin Misin ?")) {
       try {
-        fetch("/api/products/delete/" + [id], {
+        fetch(process.env.REACT_APP_CLIENT_SERVER + "/api/products/delete/" + [id], {
           method: "DELETE",
           headers: { "Content-type": "application/json; charset=UTF-8" },
         });

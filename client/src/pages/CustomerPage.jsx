@@ -127,7 +127,7 @@ const CustomerPage = () => {
   useEffect(() => {
     const getBills = async () => {
       try {
-        const res = await fetch("/api/bills");
+        const res = await fetch(process.env.REACT_APP_CLIENT_SERVER + "/api/bills");
         const data = await res.json();
         setBillItems(data);
       } catch (error) {

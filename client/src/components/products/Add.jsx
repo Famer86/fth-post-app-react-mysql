@@ -12,19 +12,19 @@ const Add = ({
 
   const onFinish = (values) => {
     try {
-      fetch("/api/products/add", {
+      fetch(process.env.REACT_APP_CLIENT_SERVER + "/api/products/add", {
         method: "POST",
         body: JSON.stringify(values),
         headers: { "Content-type": "application/json; charset=UTF-8" },
       });
       message.success("Ürün başariyla eklendi.");
       form.resetFields();
-      setIsAddModalOpen(false)
+      setIsAddModalOpen(false);
       //tüm ürünleri al (...products) value leri dağıt
       setProducts([
         ...products,
         {
-          ...values,         
+          ...values,
           id: Math.random(), //unique key istediği iiçn colsole da hata vermemesi için
           price: Number(values.price),
         },
@@ -69,9 +69,7 @@ const Add = ({
         <Form.Item
           name="category"
           label="Kategorisi Sec"
-          rules={[
-            { required: true, message: "Kategori Alanı Boş Geçilemez!" },
-          ]}
+          rules={[{ required: true, message: "Kategori Alanı Boş Geçilemez!" }]}
         >
           <Select
             showSearch
