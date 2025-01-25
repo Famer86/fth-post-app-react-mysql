@@ -5,11 +5,10 @@ const logger = require("morgan"); //istek ve status bilgilerini konsolda göster
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST", "PUT", "DELETE"]
+    origin: "http://localhost:3000" || "https://fth-post-app-react-mysql-1.onrender.com",
+    methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
-
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
