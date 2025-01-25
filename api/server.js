@@ -5,7 +5,7 @@ const logger = require("morgan"); //istek ve status bilgilerini konsolda göster
 
 app.use(
   cors({
-    origin: "http://localhost:3000" || "https://fth-post-app-react-mysql-1.onrender.com",
+    origin: "https://fth-post-app-react-mysql-1.onrender.com",
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
